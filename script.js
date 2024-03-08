@@ -9,6 +9,11 @@ const weatherIcon = document.querySelector(".weather-icon");
 async function checkWeather(city) {
   const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
 
+  if (city.length < 3) {
+    window.alert("City name much be at least 3 characters long.");
+    searchBox.classList.add("error-input");
+    return;
+  }
   if (response.status == 404) {
     document.querySelector(".error").style.display = "block";
     document.querySelector(".weather").style.display = "none";
